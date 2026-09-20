@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radar da Vida Escolar</title>
+<style>
+body {
+    background-color: #F2F2F2;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+header {
+    background-color: #1F4E79;
+    padding: 20px;
+    text-align: center;
+}
+header h1 {
+    color: #FFFFFF;
+    margin: 0;
+}
+main {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.cartao {
+    background-color: #FFFFFF;
+    padding: 15px;
+    border-left: 5px solid #1F4E79;
+    margin-bottom: 15px;
+}
+.cartao h2 {
+    color: #1F4E79;
+    margin-top: 0;
+}
+.contagem {
+    font-weight: bold;
+    color: #1F4E79;
+    font-size: 20px;
+}
+.apoiar {
+    background-color: #1F4E79;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.apoiar:hover {
+    background-color: #2E75B6;
+}
+.remover {
+    background-color: #C00000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.remover:hover {
+    background-color: #900000;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Radar da Vida Escolar</h1>
+</header>
+
+<main>
+    <div class="cartao">
+        <h2>Bebedouro do corredor</h2>
+        <p>O bebedouro vaza desde março e forma poça no piso.</p>
+        <p>Apoios: <span class="contagem">0</span></p>
+        <button class="apoiar">Apoiar</button>
+        <button class="remover">Remover</button>
+    </div>
+
+    <div class="cartao">
+        <h2>Fila da cantina</h2>
+        <p>A fila toma quase todo o intervalo dos alunos.</p>
+        <p>Apoios: <span class="contagem">0</span></p>
+        <button class="apoiar">Apoiar</button>
+        <button class="remover">Remover</button>
+    </div>
+
+    <div class="cartao">
+        <h2>Iluminação da quadra</h2>
+        <p>Metade das lâmpadas está queimada há dois meses.</p>
+        <p>Apoios: <span class="contagem">0</span></p>
+        <button class="apoiar">Apoiar</button>
+        <button class="remover">Remover</button>
+    </div>
+</main>
+
+<script>
+// soma um apoio
+let botoesApoiar = document.querySelectorAll('.apoiar');
+botoesApoiar.forEach(function(botao) {
+    botao.addEventListener('click', function() {
+        let cartao = botao.parentElement;
+        let display = cartao.querySelector('.contagem');
+        let valor = Number(display.textContent);
+        valor++;
+        display.textContent = valor;
+    });
+});
+
+// tira um apoio, sem deixar ficar negativo
+let botoesRemover = document.querySelectorAll('.remover');
+botoesRemover.forEach(function(botao) {
+    botao.addEventListener('click', function() {
+        let cartao = botao.parentElement;
+        let display = cartao.querySelector('.contagem');
+        let valor = Number(display.textContent);
+
+        if (valor > 0) {
+            valor--;
+            display.textContent = valor;
+        }
+    });
+});
+</script>
+
+</body>
+</html>
